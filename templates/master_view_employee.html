@@ -1,0 +1,152 @@
+{% include 'master_header.html' %}
+<br><br><br>
+<br><br><br>
+<style>
+	body {
+		font-family: Arial;
+	  }
+	  
+	  * {
+		box-sizing: border-box;
+	  }
+	  
+	  form.example input[type=text] {
+		padding: 10px;
+		font-size: 17px;
+		border: 1px solid grey;
+		float: left;
+		width: 60%;
+		background: #f1f1f1;
+	  }
+	  
+	  form.example button {
+		float: left;
+		width: 20%;
+		padding: 10px ;
+		background: #2196F3;
+		color: white;
+		font-size: 17px;
+		border: 1px solid grey;
+		border-left: none;
+		cursor: pointer;
+	  }
+	  
+	  form.example button:hover {
+		background: #0b7dda;
+	  }
+	  
+	  form.example::after {
+		content: "";
+		clear: both;
+		display: table;
+	  }
+	  input[type=text]{
+				  width: 30%;
+				  padding: 12px;
+				  margin-right: 20px;
+				  border: 1px solid #ccc;
+				  border-radius: 4px;
+				  resize: vertical;
+			  }
+
+
+ table{
+	background-color: lightgrey;
+	padding: 30px;
+	text-align: center;
+	border-radius:5px;
+	width:90%;
+	}
+
+
+        input[type=text]{
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+		select{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+		input[type=submit]
+        {
+            width: 20%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+		table{
+			border: 1px solid gray;
+			width: 70%;
+			padding: 10px;
+			background-color:lightgrey;
+		}
+		tr{
+			border: 1px solid gray;
+			padding: 10px;
+		}
+		th{
+			border: 1px solid gray;
+			padding: 10px;
+			text-align: center;
+		}
+		td{
+			border: 1px solid gray;
+			padding: 10px;
+		}
+	
+	</style>
+<body>
+	<h3 align="center" style="color:black;">Select Department Here... </h3><br>
+	<form method="post">
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<!--<input type="text" placeholder="Search Department Name Here.." name="place" style="width: 40%; height: 15%;">-->
+		<select name="place">
+			<option>select</option>
+			{% for i in data['dep'] %}
+			<option value="{{i.dep_name}}">{{i.dep_name}}</option>
+			{% endfor %}
+		</select>
+<button type="submit" name= "submit" style="width: 10%; height: 15%; color: blue;"class="btn btn-sm"><i class="fa fa-search"></i></button>
+<br><br><br><br>
+
+<br><br><br>
+
+<body>
+<h1 align="center" style="color:white;"> Employees </h1>
+
+	<form method="post">
+		<center>
+	<table align="Center">
+		<tr>
+			<th>Department</th>
+			<th>Name</th>
+			<th>Profile Pic</th> 
+			<th>Email</th>
+			<th>Mobile Number</th>
+		</tr>
+		{% for row in data['emp'] %}
+		<tr>
+			<td>{{row['dep_name']}}</td>
+			<td>{{row['firstname']}} {{row['lastname']}}</td>
+			<td>
+				<img src="/{{row['photo']}}" alt="Employee not Uploaded Image" width="200" height="150">
+			</td>  
+			<td>{{row['email']}}</td>
+			<td>{{row['contact']}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+</form>
+</body>
+
+<br><br>
+
+{% include 'footer.html' %}
